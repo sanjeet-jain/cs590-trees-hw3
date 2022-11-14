@@ -36,9 +36,9 @@ for folder in os.scandir():
                     row_list.append(converted_list)
                     meanList.clear()
                 with open(
-                    folder.path + "//" + filename + subName + ".csv", "w", newline=""
+                    folder.path + "\\" + filename + subName + ".csv", "w", newline=""
                 ) as file:
-                    fieldnames = ["input-size", "mean-runtime"]
+                    fieldnames = ["input-size", "mean"]
                     writer = csv.DictWriter(file, fieldnames=fieldnames)
                     writer.writeheader()
                     writer = csv.writer(file)
