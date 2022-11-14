@@ -16,6 +16,7 @@ do
   mv "$file" "${file/.txt/-extracted-sorting-time.txt}"
 done
 
+# get size counter
 cd ./../
 mkdir -p extracted-sizes
 cd ./..
@@ -31,47 +32,20 @@ do
   mv "$file" "${file/.txt/-extracted-random-sizes.txt}"
 done
 
+# get duplicate counter
+cd ./../
+mkdir -p extracted-duplicates
+cd ./..
+for f in ./*txt
+do
+grep -E -o "Duplicates: [0-9]+" $f |  grep -oe '\([0-9.]*\)' >> extracted/extracted-duplicates/$f
+echo "$f"
+done
 
-
-# mkdir -p extracted-sizes
-# cd ./..
-# for f in ./*txt
-# do
-# grep -E -o "\New size: [0-9]+" $f |  grep -oe '\([0-9.]*\)' >> extracted/extracted-sizes/$f
-# echo "$f"
-# done
-
-# cd ./extracted
-# for file in *.txt
-# do
-#   mv "$file" "${file/.txt/-extracted-sorting-time.txt}"
-# done
-
-# cd ./../
-# for f in ./*txt
-# do
-# grep -E -o "New size: [0-9]+ms real" $f |  grep -oe '\([0-9.]*\)' >> extracted/$f
-# echo "$f"
-# done
-
-# cd ./extracted
-# for file in *.txt
-# do
-#   mv "$file" "${file/.txt/-extracted-new-size.txt}"
-# done
-
-# cd ./../
-# for f in ./*txt
-# do
-# grep -E -o "Duplicates: [0-9]+" $f |  grep -oe '\([0-9.]*\)' >> extracted/$f
-# echo "$f"
-# done
-
-# cd ./extracted
-# for file in *.txt
-# do
-#   mv "$file" "${file/.txt/-extracted-duplicates.txt}"
-# done
-
+cd ./extracted/extracted-duplicates
+for file in *.txt
+do
+  mv "$file" "${file/.txt/-extracted-random-duplicates.txt}"
+done
 
 cd ./../..
