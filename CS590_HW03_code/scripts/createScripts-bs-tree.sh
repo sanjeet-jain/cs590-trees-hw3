@@ -3,7 +3,7 @@ echo "creating scripts"
 echo 
 name="bs-tree-random"
 echo $name
-sudo rm -r output-$name
+echo "root"|sudo -S rm -r output-$name
 mkdir -p output-$name
 echo 'cd ..' >> output-$name/script-$name.sh
 echo 'echo "'$name' working" ' >> output-$name/script-$name.sh
