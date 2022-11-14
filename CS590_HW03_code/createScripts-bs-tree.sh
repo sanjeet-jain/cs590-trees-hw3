@@ -20,7 +20,7 @@ cp scripts/output/* output-$name
 echo "Done"
 
 echo "creating scripts"
-make
+
 echo 
 name="bs-tree-sorted-ascending"
 echo $name
@@ -42,7 +42,7 @@ echo "Done"
 
 
 echo "creating scripts"
-make
+
 echo 
 name="bs-tree-sorted-descending"
 echo $name

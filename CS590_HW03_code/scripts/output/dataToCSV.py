@@ -7,10 +7,10 @@ row_list = []
 filename = os.path.realpath(__file__).split("\\")[-2]
 dataFolder = ""
 for folder in os.scandir():
-    if folder.is_dir():
+    if folder.is_dir() and folder.name != "extracted-csv":
         print(folder)
         for folders in os.scandir(folder):
-            if folders.is_dir():
+            if folders.is_dir() and folder.name != "extracted-csv":
                 subName = "-" + folders.name
                 print(folders.name)
                 for file in os.scandir(folders):
@@ -35,11 +35,17 @@ for folder in os.scandir():
                     converted_list = [int(element) for element in meanList]
                     row_list.append(converted_list)
                     meanList.clear()
-                with open(
-                    folder.path + "\\" + filename + subName + ".csv", "w", newline=""
-                ) as file:
-                    fieldnames = ["input-size", "mean"]
-                    writer = csv.DictWriter(file, fieldnames=fieldnames)
-                    writer.writeheader()
-                    writer = csv.writer(file)
-                    writer.writerows(row_list)
+                if (
+                    filename + subName
+                    != "output-bs-tree-sorted-ascending-extracted-csv"
+                ):
+                    with open(
+                        folder.path + "\\extracted-csv\\" + filename + subName + ".csv",
+                        "w",
+                        newline="",
+                    ) as file:
+                        fieldnames = ["input-size", "mean"]
+                        writer = csv.DictWriter(file, fieldnames=fieldnames)
+                        writer.writeheader()
+                        writer = csv.writer(file)
+                        writer.writerows(row_list)

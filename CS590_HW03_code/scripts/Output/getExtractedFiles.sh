@@ -48,4 +48,5 @@ do
   mv "$file" "${file/.txt/-extracted-counter-duplicates.txt}"
 done
 
-cd ./../..
+cd ./../
+mkdir -p extracted-csv
