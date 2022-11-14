@@ -8,12 +8,13 @@ filename = os.path.realpath(__file__).split("\\")[-2]
 dataFolder = ""
 for folder in os.scandir():
     if folder.is_dir():
+        print(folder)
         for folders in os.scandir(folder):
             if folders.is_dir():
                 filename += "-" + folders.name
                 print(folders.name)
                 for file in os.scandir(folders):
-                    # print(file.name.split("-")[-4])
+                    print(file.name.split("-")[-4])
                     if file.is_file() and file.name.split(".")[-1] == "txt":
                         with open(
                             os.path.join(
@@ -30,6 +31,7 @@ for folder in os.scandir():
                         mean = round(sum(data) / (lenData))
                         meanList.append(file.name.split("-")[-4])
                         meanList.append(mean)
+                        print(meanList)
                     converted_list = [int(element) for element in meanList]
                     row_list.append(converted_list)
                     meanList.clear()

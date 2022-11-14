@@ -16,7 +16,23 @@ do
   mv "$file" "${file/.txt/-extracted-sorting-time.txt}"
 done
 
-# cd ./../
+cd ./../
+mkdir -p extracted-sizes
+cd ./..
+for f in ./*txt
+do
+grep -E -o "\New size: [0-9]+" $f |  grep -oe '\([0-9.]*\)' >> extracted/extracted-sizes/$f
+echo "$f"
+done
+
+cd ./extracted/extracted-sizes
+for file in *.txt
+do
+  mv "$file" "${file/.txt/-extracted-random-sizes.txt}"
+done
+
+
+
 # mkdir -p extracted-sizes
 # cd ./..
 # for f in ./*txt

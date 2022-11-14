@@ -28,7 +28,7 @@ done
 cd ./extracted/extracted-sizes
 for file in *.txt
 do
-  mv "$file" "${file/.txt/-extracted-random-sizes.txt}"
+  mv "$file" "${file/.txt/-extracted-sizes.txt}"
 done
 
 
