@@ -11,7 +11,7 @@ for folder in os.scandir():
         print(folder)
         for folders in os.scandir(folder):
             if folders.is_dir():
-                filename += "-" + folders.name
+                subName = "-" + folders.name
                 print(folders.name)
                 for file in os.scandir(folders):
                     print(file.name.split("-")[-4])
@@ -36,7 +36,7 @@ for folder in os.scandir():
                     row_list.append(converted_list)
                     meanList.clear()
                 with open(
-                    folder.path + "//" + filename + ".csv", "w", newline=""
+                    folder.path + "//" + filename + subName + ".csv", "w", newline=""
                 ) as file:
                     fieldnames = ["input-size", "mean-runtime"]
                     writer = csv.DictWriter(file, fieldnames=fieldnames)
