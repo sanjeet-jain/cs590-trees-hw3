@@ -49,4 +49,3 @@ do
 done
 
 cd ./../
-mkdir -p extracted-csv

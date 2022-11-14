@@ -1,14 +1,11 @@
-import csv
 import os
 import sys
 
-meanList = []
-row_list = []
-filename = os.path.realpath(__file__).split("\\")[-2]
+mean_list = []
 dataFolder = ""
+print(os.path.realpath(__file__).split("\\")[-2])
 for folder in os.scandir():
     if folder.is_dir():
-        print(folder)
         for folders in os.scandir(folder):
             if folders.is_dir():
                 subName = "-" + folders.name
@@ -29,20 +26,7 @@ for folder in os.scandir():
                             data = [float(line.rstrip()) for line in f]
                         lenData: float = len(data) if len(data) != 0 else 1
                         mean = round(sum(data) / (lenData))
-                        meanList.append(file.name.split("-")[-4])
-                        meanList.append(mean)
-                        print(meanList)
-                    converted_list = [int(element) for element in meanList]
-                    row_list.append(converted_list)
-                    meanList.clear()
-
-                with open(
-                    folder.path + "\\extracted-csv\\" + filename + subName + ".csv",
-                    "w",
-                    newline="",
-                ) as file:
-                    fieldnames = ["input-size", "mean"]
-                    writer = csv.DictWriter(file, fieldnames=fieldnames)
-                    writer.writeheader()
-                    writer = csv.writer(file)
-                    writer.writerows(row_list)
+                        mean_list.append(str(mean))
+            print("\n".join(mean_list))
+            mean_list = []
+os.system("pause")
