@@ -29,7 +29,7 @@ done
 cd ./extracted/extracted-sizes
 for file in *.txt
 do
-  mv "$file" "${file/.txt/-extracted-random-sizes.txt}"
+  mv "$file" "${file/.txt/-extracted-counter-sizes.txt}"
 done
 
 # get duplicate counter
@@ -45,7 +45,7 @@ done
 cd ./extracted/extracted-duplicates
 for file in *.txt
 do
-  mv "$file" "${file/.txt/-extracted-random-duplicates.txt}"
+  mv "$file" "${file/.txt/-extracted-counter-duplicates.txt}"
 done
 
 cd ./../..
