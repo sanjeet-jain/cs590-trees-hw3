@@ -16,7 +16,8 @@ echo 'echo "'$name' '$j' done" '>> output-$name/script-$name.sh
 done
 done
 echo 'read -p "Press enter to continue"' >> output-$name/script-$name.sh
-cp scripts/output/rb/* output-$name
+cp scripts/output/getExtractedFiles-rb.sh output-$name
+cp scripts/output/dataToCSV.py output-$name
 echo "Done"
 
 echo "creating scripts"
@@ -37,8 +38,8 @@ echo 'echo "'$name' '$j' done" '>> output-$name/script-$name.sh
 done
 done
 echo 'read -p "Press enter to continue"' >> output-$name/script-$name.sh
-cp scripts/output/rb/* output-$name
-
+cp scripts/output/getExtractedFiles-rb.sh output-$name
+cp scripts/output/dataToCSV.py output-$name
 echo "Done"
 
 
@@ -60,6 +61,7 @@ echo 'echo "'$name' '$j' done" '>> output-$name/script-$name.sh
 done
 done
 echo 'read -p "Press enter to continue"' >> output-$name/script-$name.sh
-cp scripts/output/rb/* output-$name
+cp scripts/output/getExtractedFiles-rb.sh output-$name
+cp scripts/output/dataToCSV.py output-$name
 
 echo "Done"

@@ -66,7 +66,12 @@ void rb_tree::insert(rb_tree_node *z, rb_tree_i_info &t_info)
   {
     y = x;
 
-    if (z->key < x->key)
+    if (z->key == x->key)
+    {
+      t_info.i_duplicate = t_info.i_duplicate + 1;
+      return;
+    }
+    else if (z->key < x->key)
       x = x->left;
     else
       x = x->right;
@@ -110,6 +115,7 @@ void rb_tree::insert_fixup(rb_tree_node *&z, rb_tree_i_info &t_info)
 
       if (y->color == RB_RED)
       {
+        t_info.i_case_1 = t_info.i_case_1 + 1;
         z->p->color = RB_BLACK; // Case 1
         y->color = RB_BLACK;
         z->p->p->color = RB_RED;
@@ -119,13 +125,17 @@ void rb_tree::insert_fixup(rb_tree_node *&z, rb_tree_i_info &t_info)
       {
         if (z == z->p->right)
         {
+          t_info.i_case_2 += 1;
           z = z->p; // Case 2
           left_rotate(z);
+          t_info.i_left_rotate = t_info.i_left_rotate + 1;
         }
+        t_info.i_case_3 += 1;
 
         z->p->color = RB_BLACK; // Case 3
         z->p->p->color = RB_RED;
         right_rotate(z->p->p);
+        t_info.i_right_rotate = t_info.i_right_rotate + 1;
       }
     }
     else
@@ -135,6 +145,8 @@ void rb_tree::insert_fixup(rb_tree_node *&z, rb_tree_i_info &t_info)
 
       if (y->color == RB_RED)
       {
+        t_info.i_case_1 = t_info.i_case_1 + 1;
+
         z->p->color = RB_BLACK; // Case 1
         y->color = RB_BLACK;
         z->p->p->color = RB_RED;
@@ -144,13 +156,17 @@ void rb_tree::insert_fixup(rb_tree_node *&z, rb_tree_i_info &t_info)
       {
         if (z == z->p->left)
         {
+          t_info.i_case_2 = t_info.i_case_2 + 1;
+
           z = z->p; // Case 2
           right_rotate(z);
         }
+        t_info.i_case_3 += 1;
 
         z->p->color = RB_BLACK; // Case 3
         z->p->p->color = RB_RED;
         left_rotate(z->p->p);
+        t_info.i_left_rotate += 1;
       }
     }
   }
